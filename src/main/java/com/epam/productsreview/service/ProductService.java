@@ -1,6 +1,7 @@
 package com.epam.productsreview.service;
 
 import com.epam.productsreview.entity.Product;
+import com.epam.productsreview.exceptionHadlers.ProductNotFoundException;
 import com.epam.productsreview.exceptionHadlers.ProductsException;
 import com.epam.productsreview.repository.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class ProductService {
     public Product getProductById(Long productId) {
         Optional<Product> product = productsRepository.findById(productId);
         if (!product.isPresent()) {
-            throw new ProductsException("Not found productId");
+            throw new ProductNotFoundException("Not found productId");
         }
         return product.get();
     }
@@ -44,7 +45,11 @@ public class ProductService {
 
     public void updateProduct(Product product) {
 
-        productsRepository.save(product);
+        Product productFromDb=getProductById(product.getProductId());
+        productFromDb.setName(product.getName());
+        productFromDb.setCategory(product.getCategory());
+        productFromDb.setPrice(product.getPrice());
+        productsRepository.save(productFromDb);
 
     }
 

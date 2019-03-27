@@ -52,20 +52,6 @@ public class ProductsControllerTest {
 
 	}
 	
-	@Test
-	public void shouldReturnErrorForBadRequest() {
-
-		Product prd = populateMockProducts(1).get(0);
-		ProductRequestBean prdBean = new ProductRequestBean();
-		//prdBean.setName(prd.getName());
-		//prdBean.setCategory(prd.getCategory());
-		//prdBean.setPrice((double) prd.getPrice());
-
-		when(productService.addProducts(any(Product.class))).thenReturn(prd);
-		productsController.saveProducts(prdBean);
-		verify(productService, timeout(1)).addProducts(any(Product.class));
-
-	}
 
 	private List<Product> populateMockProducts(int count) {
 		Random rnd = new Random(140);// seed value
