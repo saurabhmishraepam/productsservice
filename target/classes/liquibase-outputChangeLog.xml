@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="saurabh (generated)" id="1551725935105-1">
+        <createTable tableName="hibernate_sequence">
+            <column name="next_val" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="saurabh (generated)" id="1551725935105-2">
+        <createTable tableName="products">
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category" type="VARCHAR(30)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="price" type="FLOAT(12)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="saurabh (generated)" id="1551725935105-3">
+        <addPrimaryKey columnNames="product_id" constraintName="PRIMARY" tableName="products"/>
+    </changeSet>
+</databaseChangeLog>
