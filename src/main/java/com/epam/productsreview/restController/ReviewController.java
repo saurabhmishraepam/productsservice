@@ -18,7 +18,7 @@ import org.springframework.web.servlet.view.RedirectView;
 public class ReviewController {
     private static final Logger logger= LoggerFactory.getLogger(ReviewController.class);
     @Autowired
-    @Qualifier("restEurekaImpl")
+    @Qualifier("feignImpl")
     private ReviewService reviewService;
     @GetMapping("/{productId}")
     public ResponseEntity getReview(@PathVariable("productId") int productId){

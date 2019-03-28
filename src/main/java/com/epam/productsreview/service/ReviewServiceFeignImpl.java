@@ -1,5 +1,9 @@
 package com.epam.productsreview.service;
 
+import com.epam.productsreview.service.feignImpl.ReviewServiceProxy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -8,10 +12,14 @@ import org.springframework.stereotype.Service;
  */
 @Service("feignImpl")
 public class ReviewServiceFeignImpl implements ReviewService{
-
+    private static final Logger logger= LoggerFactory.getLogger(ReviewServiceFeignImpl.class);
+    @Autowired
+    ReviewServiceProxy reviewServiceProxy;
     @Override
     public ResponseEntity getReviewsByProductId(int productId) {
-        return null;
+        logger.info("Feignclient");
+      return   reviewServiceProxy.getReviews(productId);
+        //return null;
     }
 
     @Override
