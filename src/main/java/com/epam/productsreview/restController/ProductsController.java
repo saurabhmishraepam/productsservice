@@ -37,12 +37,12 @@ public class ProductsController {
 	}
 
 	@GetMapping("/{productId}")
-	public Product getProductById(@PathVariable("productId") @Min(2) Long productId) {
+	public Product getProductById(@PathVariable("productId")  Long productId) {
 		return productReviewService.getProductById(productId);
 	}
 
 	@DeleteMapping("/{productId}")
-	public void deleteProductById(@PathVariable("productId") @Min(2) Long productId) {
+	public void deleteProductById(@PathVariable("productId") Long productId) {
 		productReviewService.deleteProductById(productId);
 	}
 

@@ -17,13 +17,11 @@ import java.time.LocalTime;
 @RestController
 public class DefaultExceptionHandler extends ResponseEntityExceptionHandler{
 
-    @ExceptionHandler(Exception.class)
-    public final ResponseEntity<ErrorDetails> handleProductsException(ProductsException productsException, WebRequest request){
+    @ExceptionHandler({ProductNotFoundException.class, ProductsException.class})
+    public final ResponseEntity<ErrorDetails> handleProductsException(ProductNotFoundException productsException, WebRequest request){
 
         ResponseEntity<ErrorDetails> entity=new ResponseEntity(
                 new ErrorDetails(LocalTime.now(), productsException.getMessage(), productsException.getMessage()), HttpStatus.BAD_REQUEST);
         return entity;
     }
-
-
 }

@@ -2,12 +2,14 @@ package com.epam.productsreview;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
-public class ProductsReviewApplication {
+@EnableDiscoveryClient
+public class ProductsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProductsReviewApplication.class, args);
+		SpringApplication.run(ProductsApplication.class, args);
 	}
 
 }
