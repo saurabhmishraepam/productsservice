@@ -34,17 +34,22 @@ public class ReviewServiceRestEurekaClientImpl implements ReviewService {
     private String reviewsEndpoint="/reviews/product/";
     private String reviewEndPt="/reviews/";
     @Autowired
-    EurekaClient eurekaCleint;
-
+    private EurekaClient eurekaCleint;
 
     public ResponseEntity getReviewsByProductId(int productId) {
         List<InstanceInfo> instances =
                 eurekaCleint.getApplication(reviewServiceId).getInstances();
         InstanceInfo instanceInfo = instances.get(0);
         String url = "http://" + instanceInfo.getIPAddr() + ":" + instanceInfo.getPort();
-        logger.info(url);
-        ResponseEntity resentity = restTemplate.exchange(url + reviewsEndpoint + productId,
+        logger.info(">>>>>>>>>>"+url + reviewsEndpoint + productId);
+        
+        ResponseEntity resentity =null;
+        try {
+        	resentity= restTemplate.exchange(url + reviewsEndpoint + productId,
                 HttpMethod.GET, getEntity(), String.class);
+        }catch(Exception ex) {
+        	logger.error("Error in rendering",ex);
+        }
         return resentity;
     }
     public ResponseEntity deleteReviewsByProductId(int id){
@@ -63,10 +68,10 @@ public class ReviewServiceRestEurekaClientImpl implements ReviewService {
                 eurekaCleint.getApplication(reviewServiceId).getInstances();
         InstanceInfo instanceInfo = instances.get(0);
         String url = "http://" + instanceInfo.getIPAddr() + ":" + instanceInfo.getPort();
-
+        logger.info(url);
        ResponseEntity resentity = null;
         try {
-            resentity = restTemplate.exchange(url+reviewEndPt,
+            resentity = restTemplate.exchange(url+reviewsEndpoint,
                     HttpMethod.PUT, getPostEntity(obj),String.class);
         } catch (IOException e) {
             e.printStackTrace();
@@ -78,10 +83,10 @@ public class ReviewServiceRestEurekaClientImpl implements ReviewService {
                 eurekaCleint.getApplication(reviewServiceId).getInstances();
         InstanceInfo instanceInfo = instances.get(0);
         String url = "http://" + instanceInfo.getIPAddr() + ":" + instanceInfo.getPort();
-
+        logger.info(url);
         ResponseEntity resentity = null;
         try {
-            resentity = restTemplate.exchange(url+reviewEndPt,
+            resentity = restTemplate.exchange(url+reviewsEndpoint,
                     HttpMethod.POST, getPostEntity(obj),String.class);
         } catch (IOException e) {
             e.printStackTrace();
