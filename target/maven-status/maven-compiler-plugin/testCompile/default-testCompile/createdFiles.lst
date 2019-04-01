@@ -1,0 +1,4 @@
+com/epam/productsreview/service/ProductServiceTest.class
+com/epam/productsreview/restController/ProductsControllerIntegrationTest.class
+com/epam/productsreview/restController/ProductsControllerTest.class
+com/epam/productsreview/ProductsApplicationTests.class
