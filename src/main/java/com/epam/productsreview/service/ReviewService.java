@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Service
 public interface ReviewService {
-	@GetMapping("/reviews/product/{productId}")
     public ResponseEntity getReviewsByProductId(int productId);
     public ResponseEntity deleteReviewsByProductId(int id);
     public ResponseEntity updateReviews(Object obj);
